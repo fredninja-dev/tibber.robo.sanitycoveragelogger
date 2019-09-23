@@ -1,0 +1,40 @@
+﻿version: '3.4'
+
+networks:
+  tibber-network:
+    driver: bridge 
+
+services:
+  tibberroboapi:
+    image: tibberroboapi:latest
+    depends_on:
+      - "postgres_image"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"     
+    environment:
+      DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=tibberrobo;username=tibbersysuser;password=tibbersecret123#"
+    networks:
+      - tibber-network 
+  
+  postgres_image:
+    image: postgres:12
+    ports:
+      - "5432"
+    restart: always
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+      - ./dbscripts/init.sql :/docker-entrypoint-initdb.d/seed.sql
+    environment:
+      POSTGRES_USER: "tibbersysuser"
+      POSTGRES_PASSWORD: "tibbersecret123#"
+      POSTGRES_DB: "tibberrobo"
+    networks:
+      - tibber-network
+volumes:
+  db_volume:
+         
+    
+     

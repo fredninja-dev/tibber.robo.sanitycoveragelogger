@@ -1,0 +1,2 @@
+# tibber.robo.sanitycoveragelogger
+ 
