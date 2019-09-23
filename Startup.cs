@@ -25,8 +25,7 @@ namespace tibber.robo.sanitycoveragelogger
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            //var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
-            var connectionString ="host = localhost; port = 54320; database = robo; username = postgres; password = admin";
+            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
             services.AddDbContext<RoboDBContext>(options =>
             options.UseNpgsql(
             connectionString
