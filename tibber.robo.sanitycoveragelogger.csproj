@@ -22,4 +22,9 @@
     <Folder Include="DTO\" />
     <Folder Include="dbscripts\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="dbscripts\seed.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
